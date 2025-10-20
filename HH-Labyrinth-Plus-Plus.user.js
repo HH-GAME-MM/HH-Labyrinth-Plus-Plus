@@ -5,44 +5,60 @@
 // @author       -MM-
 // @match        https://*.hentaiheroes.com/labyrinth.html*
 // @match        https://*.hentaiheroes.com/labyrinth-pre-battle.html?id_opponent=*
+// @match        https://*.hentaiheroes.com/world-boss-pre-battle*
 // @match        https://*.hentaiheroes.com/labyrinth-battle.html?id_opponent=*
+// @match        https://*.hentaiheroes.com/world-boss-battle.html*
 // @match        https://*.hentaiheroes.com/edit-labyrinth-team.html*
-// @match        https://*.hentaiheroes.com/home.html*
+// @match        https://*.hentaiheroes.com/edit-world-boss-team.html*
 // @match        https://nutaku.haremheroes.com/labyrinth.html*
 // @match        https://nutaku.haremheroes.com/labyrinth-pre-battle.html?id_opponent=*
+// @match        https://nutaku.haremheroes.com/world-boss-pre-battle*
 // @match        https://nutaku.haremheroes.com/labyrinth-battle.html?id_opponent=*
+// @match        https://nutaku.haremheroes.com/world-boss-battle.html*
 // @match        https://nutaku.haremheroes.com/edit-labyrinth-team.html*
-// @match        https://nutaku.haremheroes.com/home.html*
+// @match        https://nutaku.haremheroes.com/edit-world-boss-team.html*
 // @match        https://*.comixharem.com/labyrinth.html*
 // @match        https://*.comixharem.com/labyrinth-pre-battle.html?id_opponent=*
+// @match        https://*.comixharem.com/world-boss-pre-battle*
 // @match        https://*.comixharem.com/labyrinth-battle.html?id_opponent=*
+// @match        https://*.comixharem.com/world-boss-battle.html*
 // @match        https://*.comixharem.com/edit-labyrinth-team.html*
-// @match        https://*.comixharem.com/home.html*
+// @match        https://*.comixharem.com/edit-world-boss-team.html*
 // @match        https://*.pornstarharem.com/labyrinth.html*
 // @match        https://*.pornstarharem.com/labyrinth-pre-battle.html?id_opponent=*
+// @match        https://*.pornstarharem.com/world-boss-pre-battle*
 // @match        https://*.pornstarharem.com/labyrinth-battle.html?id_opponent=*
+// @match        https://*.pornstarharem.com/world-boss-battle.html*
 // @match        https://*.pornstarharem.com/edit-labyrinth-team.html*
-// @match        https://*.pornstarharem.com/home.html*
+// @match        https://*.pornstarharem.com/edit-world-boss-team.html*
 // @match        https://*.gayharem.com/labyrinth.html*
 // @match        https://*.gayharem.com/labyrinth-pre-battle.html?id_opponent=*
+// @match        https://*.gayharem.com/world-boss-pre-battle*
 // @match        https://*.gayharem.com/labyrinth-battle.html?id_opponent=*
+// @match        https://*.gayharem.com/world-boss-battle.html*
 // @match        https://*.gayharem.com/edit-labyrinth-team.html*
-// @match        https://*.gayharem.com/home.html*
+// @match        https://*.gayharem.com/edit-world-boss-team.html*
 // @match        https://*.gaypornstarharem.com/labyrinth.html*
 // @match        https://*.gaypornstarharem.com/labyrinth-pre-battle.html?id_opponent=*
+// @match        https://*.gaypornstarharem.com/world-boss-pre-battle*
 // @match        https://*.gaypornstarharem.com/labyrinth-battle.html?id_opponent=*
+// @match        https://*.gaypornstarharem.com/world-boss-battle.html*
 // @match        https://*.gaypornstarharem.com/edit-labyrinth-team.html*
-// @match        https://*.gaypornstarharem.com/home.html*
+// @match        https://*.gaypornstarharem.com/edit-world-boss-team.html*
 // @match        https://*.transpornstarharem.com/labyrinth.html*
 // @match        https://*.transpornstarharem.com/labyrinth-pre-battle.html?id_opponent=*
+// @match        https://*.transpornstarharem.com/world-boss-pre-battle*
 // @match        https://*.transpornstarharem.com/labyrinth-battle.html?id_opponent=*
+// @match        https://*.transpornstarharem.com/world-boss-battle.html*
 // @match        https://*.transpornstarharem.com/edit-labyrinth-team.html*
-// @match        https://*.transpornstarharem.com/home.html*
+// @match        https://*.transpornstarharem.com/edit-world-boss-team.html*
 // @match        https://*.hornyheroes.com/labyrinth.html*
 // @match        https://*.hornyheroes.com/labyrinth-pre-battle.html?id_opponent=*
+// @match        https://*.hornyheroes.com/world-boss-pre-battle*
 // @match        https://*.hornyheroes.com/labyrinth-battle.html?id_opponent=*
+// @match        https://*.hornyheroes.com/world-boss-battle.html*
 // @match        https://*.hornyheroes.com/edit-labyrinth-team.html*
-// @match        https://*.hornyheroes.com/home.html*
+// @match        https://*.hornyheroes.com/edit-world-boss-team.html*
 // @run-at       document-body
 // @namespace    https://github.com/HH-GAME-MM/HH-Labyrinth-Plus-Plus
 // @updateURL    https://github.com/HH-GAME-MM/HH-Labyrinth-Plus-Plus/raw/main/HH-Labyrinth-Plus-Plus.user.js
@@ -52,14 +68,9 @@
 // @grant        unsafeWindow
 // ==/UserScript==
 
-(function(window) {
+(function() {
     'use strict';
-    /*global shared,GT,opponent_fighter,hero_fighter,get_lang,$*/
-
-    //cancel script when we are on home.html
-    if(window.location.pathname === '/home.html') {
-        return;
-    }
+    /*global unsafeWindow,shared,GT,opponent_fighter,hero_fighter,get_lang,$*/
 
     console.log(GM_info.script.name + ' Script v' + GM_info.script.version);
 
@@ -67,12 +78,20 @@
     const LS_KEY = 'HHLabyrinthPlusPlus_Config';
 
     //css
-    switch(window.location.pathname)
+    switch(unsafeWindow.location.pathname)
     {
-        case '/labyrinth.html': Labyrinth_css(); break;
-        case '/labyrinth-pre-battle.html': PreBattle_css(); break;
-        case '/labyrinth-battle.html': Battle_css(); break;
-        case '/edit-labyrinth-team.html': EditTeam_css(); break;
+        case '/labyrinth.html':
+            Labyrinth_css(); break;
+        case '/labyrinth-pre-battle.html':
+        case '/world-boss-pre-battle':
+        case '/world-boss-pre-battle.html':
+            PreBattle_css(); break;
+        case '/labyrinth-battle.html':
+        case '/world-boss-battle.html':
+            Battle_css(); break;
+        case '/edit-labyrinth-team.html':
+        case '/edit-world-boss-team.html':
+            EditTeam_css(); break;
     }
 
     if(document.readyState !== 'loading') {
@@ -84,19 +103,26 @@
     function DOMContentLoaded()
     {
         //shared game functions and objects
-        const Hero = (window.Hero ? window.Hero : shared.Hero);
-        const hh_ajax = (window.hh_ajax ? window.hh_ajax : shared.general.hh_ajax);
-        const loadingAnimation = (window.loadingAnimation ? window.loadingAnimation : shared.animations.loadingAnimation);
-        const HHPopupManager = (window.HHPopupManager ? window.HHPopupManager : shared.popups_manager.HHPopupManager);
-        const objectivePopup = (window.objectivePopup ? window.objectivePopup : shared.general.objectivePopup);
-        const Reward = (window.Reward ? window.Reward : shared.reward_popup.Reward);
-        const getSessionId = (window.getSessionId ? window.getSessionId : () => { return new URLSearchParams(window.location.search).get("sess"); }); //Nutaku only
+        const {
+            Hero,
+            animations: { loadingAnimation },
+            general: { hh_ajax, objectivePopup },
+            popups_manager: { HHPopupManager },
+            reward_popup: { Reward },
+        } = shared;
+        const getSessionId = (unsafeWindow.getSessionId ? unsafeWindow.getSessionId : () => { return new URLSearchParams(unsafeWindow.location.search).get("sess"); }); //Nutaku only
 
-        switch(window.location.pathname)
+        switch(unsafeWindow.location.pathname)
         {
-            case '/labyrinth.html': onReadyRun(Labyrinth_run, '.labyrinth-panel .labyrinth-container .bottom-section'); break;
-            case '/labyrinth-pre-battle.html': onReadyRun(PreBattle_run, '#perform_opponent'); break;
-            case '/edit-labyrinth-team.html': onReadyRun(EditTeam_run, 'div.change-team-panel .panel-title'); break;
+            case '/labyrinth.html':
+                onReadyRun(Labyrinth_run, '.labyrinth-panel .labyrinth-container .bottom-section'); break;
+            case '/labyrinth-pre-battle.html':
+            case '/world-boss-pre-battle': // coming from home page the path doesn't have .html
+            case '/world-boss-pre-battle.html':
+                onReadyRun(PreBattle_run, '#perform_opponent'); break;
+            case '/edit-labyrinth-team.html':
+            case '/edit-world-boss-team.html':
+                onReadyRun(EditTeam_run, 'div.change-team-panel .panel-title'); break;
         }
 
         function onReadyRun(callback, selector) {
@@ -110,10 +136,10 @@
         function Labyrinth_run()
         {
             //HH Labyrinth++ text
-            let bottomSection = document.querySelector('.labyrinth-panel .labyrinth-container .bottom-section');
-            let div = document.createElement('div');
+            const bottomSection = document.querySelector('.labyrinth-panel .labyrinth-container .bottom-section');
+            const div = document.createElement('div');
             div.setAttribute('class', 'credits');
-            div.innerHTML = GM_info.script.name + ' v' + GM_info.script.version + ' by <div style="display:inline;cursor:pointer" onclick="' + (window.location.hostname === 'www.hentaiheroes.com' ? 'shared.general.hero_page_popup({ id:4266159, preview: false, page: \'profile\' })' : 'window.open(\'https://www.hentaiheroes.com/hero/4266159/profile.html\', \'_blank\');') + '">-MM-</div>';
+            div.innerHTML = GM_info.script.name + ' v' + GM_info.script.version + ' by <div style="display:inline;cursor:pointer" onclick="' + (unsafeWindow.location.hostname === 'www.hentaiheroes.com' ? 'shared.general.hero_page_popup({ id:4266159, preview: false, page: \'profile\' })' : 'window.open(\'https://www.hentaiheroes.com/hero/4266159/profile.html\', \'_blank\');') + '">-MM-</div>';
             bottomSection.appendChild(div);
 
             //shop mods
@@ -152,7 +178,7 @@
                 }
 
                 //add confirmation to the buy buttons
-                let buyButtons = node.querySelectorAll('button.blue_button_L.buy-item');
+                const buyButtons = node.querySelectorAll('button.blue_button_L.buy-item');
                 for(let i = 0; i < buyButtons.length; i++)
                 {
                     let btn = buyButtons[i];
@@ -201,11 +227,12 @@
                         ru: ['all girls'],
                     });
 
-                    let iconSet = ['https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.0.1/72x72/1f600.png', //very good relic
-                                   'https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.0.1/72x72/1f642.png', //good relic
-                                   'https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.0.1/72x72/1f641.png', //bad relic
-                                   'https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.0.1/72x72/1f629.png', //very bad relic
-                                   'https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.0.1/72x72/1f914.png']; //not rated
+                    const iconSet = [
+                        'https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.0.1/72x72/1f600.png', //very good relic
+                        'https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.0.1/72x72/1f642.png', //good relic
+                        'https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.0.1/72x72/1f641.png', //bad relic
+                        'https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.0.1/72x72/1f629.png', //very bad relic
+                        'https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.0.1/72x72/1f914.png']; //not rated
 
                     //custom iconSet
                     if(location.hostname === 'www.hentaiheroes.com')
@@ -298,28 +325,40 @@
         function PreBattle_run()
         {
             const nutakuSessionId = getSessionId();
+            const isLab = unsafeWindow.location.pathname === '/labyrinth-pre-battle.html';
+
+            const battleURL = isLab
+                ? `/labyrinth-battle.html?id_opponent=${opponent_fighter.id_fighter}&number_of_battles=1${nutakuSessionId !== null ? '&sess=' + nutakuSessionId : ''}`
+                : `/world-boss-battle.html${nutakuSessionId !== null ? '?sess=' + nutakuSessionId : ''}`;
 
             //remove event listeners from middle container
-            let container = document.querySelector('div.middle-container');
+            const container = document.querySelector('div.middle-container');
             container.setAttribute('style', 'text-align: center');
             container.parentNode.replaceChild(container.cloneNode(true), container);
 
-            //button Go Back
-            let btnBack = document.querySelector('#return_labyrinth');
-            btnBack.addEventListener("click", () => {
-                window.location.href = "/labyrinth.html" + (nutakuSessionId !== null ? '?sess=' + nutakuSessionId : '');
-            });
+            // restore behavior
+            if (isLab) {
+                const btnBack = document.querySelector('#return_labyrinth');
+                btnBack.addEventListener("click", () => {
+                    unsafeWindow.location.href = "/labyrinth.html" + (nutakuSessionId !== null ? '?sess=' + nutakuSessionId : '');
+                });
+            } else {
+                const infoBox = document.querySelector('#strategy-infos');
+                const infoBubble = document.querySelector('.strategy-tips.speech_bubble_info_icn');
+                infoBubble.addEventListener('click', () => { infoBox.classList.remove('hidden') });
+                const closeInfo = document.querySelector('#close_info');
+                closeInfo.addEventListener('click', () => { infoBox.classList.add('hidden') });
+            }
 
             //button Perform!
             let btnPerform = document.querySelector('#perform_opponent');
-            btnPerform.setAttribute('style', 'display: inline-block');
             btnPerform.addEventListener("click", () => {
                 btnPerform_Click(false);
             });
 
             //button Perform and skip battle!
             let btnPerformAjax = btnPerform.cloneNode(true);
-            btnPerformAjax.setAttribute('style', 'display: inline-block; margin-top: 2rem');
+            btnPerformAjax.setAttribute('style', 'display: inline-block; margin-top: 0.5rem');
             btnPerformAjax.innerHTML = 'Perform and skip battle!';
             btnPerformAjax.addEventListener("click", () => {
                 btnPerform_Click(true);
@@ -327,10 +366,10 @@
             btnPerform.after(btnPerformAjax);
 
             //fix HH++ relics button
-            let btnRelics = document.querySelector('.script-relics-toggle');
+            const btnRelics = document.querySelector('.script-relics-toggle');
             if(btnRelics !== null)
             {
-                let btnRelicsClone = btnRelics.cloneNode(true);
+                const btnRelicsClone = btnRelics.cloneNode(true);
                 btnRelics.parentNode.replaceChild(btnRelicsClone, btnRelics);
                 btnRelicsClone.addEventListener("click", () => {
                     $('.middle-container .script-relics-panel').toggle();
@@ -339,12 +378,12 @@
 
             function btnPerform_Click(skipFight)
             {
-                var isTeamFull = Object.keys(hero_fighter.team.girls).length === 7;
+                const isTeamFull = Object.keys(hero_fighter.team.girls).length === 7;
                 if (isTeamFull || confirm(GT.design.labyrinth_partially_full_team)) {
                     if(skipFight) {
                         performAjax();
                     } else {
-                        window.location.href = "/labyrinth-battle.html?id_opponent=" + opponent_fighter.id_fighter + "&number_of_battles=1" + (nutakuSessionId !== null ? '&sess=' + nutakuSessionId : '');
+                        unsafeWindow.location.href = battleURL;
                     }
                 }
             }
@@ -364,36 +403,36 @@
                 loadingAnimation.start();
 
                 //open the battle page first
-                $.ajax({ url: "/labyrinth-battle.html?id_opponent=" + opponent_fighter.id_fighter + "&number_of_battles=1" + (nutakuSessionId !== null ? '&sess=' + nutakuSessionId : ''), success: function(data) {
-
-                    //change referer
-                    window.history.replaceState(null, '', "/labyrinth-battle.html?id_opponent=" + opponent_fighter.id_fighter + "&number_of_battles=1" + (nutakuSessionId !== null ? '&sess=' + nutakuSessionId : ''));
-
-                    let params = {
-                        action: "do_battles_labyrinth",
-                        id_opponent: opponent_fighter.id_fighter,
-                        number_of_battles: "1"
-                    };
-                    hh_ajax(params, function(data) {
+                $.ajax({
+                    url: battleURL,
+                    success: function (data) {
                         //change referer
-                        window.history.replaceState(null, '', '/labyrinth-pre-battle.html?id_opponent=' + opponent_fighter.id_fighter + (nutakuSessionId !== null ? '&sess=' + nutakuSessionId : ''));
-
-                        loadingAnimation.stop();
-                        Reward.handlePopup(data.rewards);
-                        Hero.updates(data.hero_changes);
-                        if(data.objective_points) {
-                            data.rewards.objective_points = data.objective_points;
-                            objectivePopup.show(data.rewards);
-                        }
-                    })
-                }});
+                        unsafeWindow.history.replaceState(null, '', battleURL);
+                        const params = {
+                            action: isLab ? "do_battles_labyrinth" : "do_battles_world_boss",
+                            id_opponent: isLab ? opponent_fighter.id_fighter : "",
+                            number_of_battles: "1"
+                        };
+                        hh_ajax(params, function (data) {
+                            //change referer
+                            unsafeWindow.history.replaceState(null, '', battleURL);
+                            loadingAnimation.stop();
+                            Reward.handlePopup(data.rewards);
+                            Hero.updates(data.hero_changes);
+                            if (data.objective_points) {
+                                data.rewards.objective_points = data.objective_points;
+                                objectivePopup.show(data.rewards);
+                            }
+                        })
+                    }
+                });
             }
         }
 
         function EditTeam_run()
         {
             //fix redirectUrl
-            window.redirectUrl = window.redirectUrl.replace('/edit-labyrinth-team.html', '/labyrinth.html');
+            unsafeWindow.redirectUrl = unsafeWindow.redirectUrl.replace('/edit-labyrinth-team.html', '/labyrinth.html');
 
             //filter
             const mySquadNodeOri = document.querySelector('div.change-team-panel .panel-title');
@@ -404,7 +443,7 @@
             const mySquadText = mySquadNode.innerText;
             const searchBtn = document.querySelector('#filter_girls');
             const btns = [createBtn(2), createBtn(1), createBtn(3)];
-            let config = loadConfigFromLocalStorage();
+            const config = loadConfigFromLocalStorage();
             if(config.lastFilter !== 0) {
                 onReadyRun(() => { btns[indexToArrayIndex(config.lastFilter)].click(); }, 'div.select-group.girl-class-filter div.selectric-items ul li[data-index="1"]');
             } else {
@@ -437,10 +476,10 @@
 
             function createBtn(index)
             {
-                let png = indexToArrayIndex(index) + 1;
-                let style = (png === 3 ? 'float: right;' : 'float: right; margin-right: 10px;');
+                const png = indexToArrayIndex(index) + 1;
+                const style = (png === 3 ? 'float: right;' : 'float: right; margin-right: 10px;');
 
-                let btn = document.createElement('button');
+                const btn = document.createElement('button');
                 btn.setAttribute('class', 'square_blue_btn');
                 btn.setAttribute('style', style);
                 btn.innerHTML = '<span class="search_open_icn" style="background-image: url(https://hh2.hh-content.com/pictures/misc/items_icons/' + png + '.png)"></span>';
@@ -471,16 +510,14 @@
 
     function PreBattle_css()
     {
-        let css = document.createElement('style');
+        const css = document.createElement('style');
         document.head.appendChild(css);
-
-        //hide the Perform! button
-        css.sheet.insertRule('#perform_opponent {display: none}');
+        css.sheet.insertRule('.strategy-tips.speech_bubble_info_icn { margin-top: 2rem !important }');
     }
 
     function EditTeam_css()
     {
-        let css = document.createElement('style');
+        const css = document.createElement('style');
         document.head.appendChild(css);
 
         css.sheet.insertRule(`.change-team-panel button.pressedDown {
@@ -503,7 +540,7 @@
 
     function Battle_css()
     {
-        let css = document.createElement('style');
+        const css = document.createElement('style');
         document.head.appendChild(css);
 
         //skip button perm visible
@@ -512,7 +549,7 @@
 
     function Labyrinth_css()
     {
-        let css = document.createElement('style');
+        const css = document.createElement('style');
         document.head.appendChild(css);
 
         //credits
@@ -530,8 +567,8 @@
 
     function loadConfigFromLocalStorage()
     {
-        let json = localStorage.getItem(LS_KEY);
-        let config = json != null ? JSON.parse(json) : { };
+        const json = localStorage.getItem(LS_KEY);
+        const config = json != null ? JSON.parse(json) : { };
 
         //default config
         if(typeof config.lastFilter == 'undefined') config.lastFilter = 0;
@@ -561,4 +598,4 @@
     {
         return (el.offsetParent === null);
     }
-})(unsafeWindow);
+})();
