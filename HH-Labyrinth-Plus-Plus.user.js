@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         HH Labyrinth++
-// @version      0.9.8
-// @description  Upgrade Labyrinth with various features
-// @author       -MM-
+// @version      0.10.0
+// @description  Upgrade Labyrinth and WBT with various features
+// @author       -MM-, xnh0x
 // @match        https://*.hentaiheroes.com/labyrinth.html*
 // @match        https://*.hentaiheroes.com/labyrinth-pre-battle.html?id_opponent=*
 // @match        https://*.hentaiheroes.com/world-boss-pre-battle*
