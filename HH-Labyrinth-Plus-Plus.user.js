@@ -555,6 +555,9 @@
         //credits
         css.sheet.insertRule('.labyrinth-panel .labyrinth-container .bottom-section .credits {position: absolute;width: 260px;bottom: 0;left: -280px;font-size: 16px;box-shadow: 0 6px 12px rgba(0,0,0,.66),inset 0 0 50px rgba(102,32,52,.4);border-radius: 28px;border: 1px solid #f90;background-image: linear-gradient(to top,#7a3566 0,#412b4b 100%);text-align: center;}');
 
+        // move sweep button away from credits
+        css.sheet.insertRule('.labyrinth-panel .labyrinth-container .tabs-section button#sweeping-floor { bottom: 7.5rem; right: 2.5rem; left: unset; }');
+
         //shop items
         css.sheet.insertRule('#shop_tab_container .shop-items-list .shop-item {transform: scale(0.8);}');
 
