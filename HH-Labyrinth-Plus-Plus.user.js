@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         HH Labyrinth++
-// @version      0.10.0
+// @version      0.10.1
 // @description  Upgrade Labyrinth and WBT with various features
 // @author       -MM-, xnh0x
 // @match        https://*.hentaiheroes.com/labyrinth.html*
