@@ -10,6 +10,8 @@
 // @match        https://*.hentaiheroes.com/world-boss-battle.html*
 // @match        https://*.hentaiheroes.com/edit-labyrinth-team.html*
 // @match        https://*.hentaiheroes.com/edit-world-boss-team.html*
+// @match        https://*.hentaiheroes.com/penta-drill-arena.html*
+// @match        https://*.hentaiheroes.com/penta-drill-pre-battle*
 // @match        https://nutaku.haremheroes.com/labyrinth.html*
 // @match        https://nutaku.haremheroes.com/labyrinth-pre-battle.html?id_opponent=*
 // @match        https://nutaku.haremheroes.com/world-boss-pre-battle*
@@ -17,6 +19,8 @@
 // @match        https://nutaku.haremheroes.com/world-boss-battle.html*
 // @match        https://nutaku.haremheroes.com/edit-labyrinth-team.html*
 // @match        https://nutaku.haremheroes.com/edit-world-boss-team.html*
+// @match        https://nutaku.haremheroes.com/penta-drill-arena.html*
+// @match        https://nutaku.haremheroes.com/penta-drill-pre-battle*
 // @match        https://*.comixharem.com/labyrinth.html*
 // @match        https://*.comixharem.com/labyrinth-pre-battle.html?id_opponent=*
 // @match        https://*.comixharem.com/world-boss-pre-battle*
@@ -24,6 +28,8 @@
 // @match        https://*.comixharem.com/world-boss-battle.html*
 // @match        https://*.comixharem.com/edit-labyrinth-team.html*
 // @match        https://*.comixharem.com/edit-world-boss-team.html*
+// @match        https://*.comixharem.com/penta-drill-arena.html*
+// @match        https://*.comixharem.com/penta-drill-pre-battle*
 // @match        https://*.pornstarharem.com/labyrinth.html*
 // @match        https://*.pornstarharem.com/labyrinth-pre-battle.html?id_opponent=*
 // @match        https://*.pornstarharem.com/world-boss-pre-battle*
@@ -31,6 +37,8 @@
 // @match        https://*.pornstarharem.com/world-boss-battle.html*
 // @match        https://*.pornstarharem.com/edit-labyrinth-team.html*
 // @match        https://*.pornstarharem.com/edit-world-boss-team.html*
+// @match        https://*.pornstarharem.com/penta-drill-arena.html*
+// @match        https://*.pornstarharem.com/penta-drill-pre-battle*
 // @match        https://*.gayharem.com/labyrinth.html*
 // @match        https://*.gayharem.com/labyrinth-pre-battle.html?id_opponent=*
 // @match        https://*.gayharem.com/world-boss-pre-battle*
@@ -38,6 +46,8 @@
 // @match        https://*.gayharem.com/world-boss-battle.html*
 // @match        https://*.gayharem.com/edit-labyrinth-team.html*
 // @match        https://*.gayharem.com/edit-world-boss-team.html*
+// @match        https://*.gayharem.com/penta-drill-arena.html*
+// @match        https://*.gayharem.com/penta-drill-pre-battle*
 // @match        https://*.gaypornstarharem.com/labyrinth.html*
 // @match        https://*.gaypornstarharem.com/labyrinth-pre-battle.html?id_opponent=*
 // @match        https://*.gaypornstarharem.com/world-boss-pre-battle*
@@ -45,6 +55,8 @@
 // @match        https://*.gaypornstarharem.com/world-boss-battle.html*
 // @match        https://*.gaypornstarharem.com/edit-labyrinth-team.html*
 // @match        https://*.gaypornstarharem.com/edit-world-boss-team.html*
+// @match        https://*.gaypornstarharem.com/penta-drill-arena.html*
+// @match        https://*.gaypornstarharem.com/penta-drill-pre-battle*
 // @match        https://*.transpornstarharem.com/labyrinth.html*
 // @match        https://*.transpornstarharem.com/labyrinth-pre-battle.html?id_opponent=*
 // @match        https://*.transpornstarharem.com/world-boss-pre-battle*
@@ -52,6 +64,8 @@
 // @match        https://*.transpornstarharem.com/world-boss-battle.html*
 // @match        https://*.transpornstarharem.com/edit-labyrinth-team.html*
 // @match        https://*.transpornstarharem.com/edit-world-boss-team.html*
+// @match        https://*.transpornstarharem.com/penta-drill-arena.html*
+// @match        https://*.transpornstarharem.com/penta-drill-pre-battle*
 // @match        https://*.hornyheroes.com/labyrinth.html*
 // @match        https://*.hornyheroes.com/labyrinth-pre-battle.html?id_opponent=*
 // @match        https://*.hornyheroes.com/world-boss-pre-battle*
@@ -59,6 +73,8 @@
 // @match        https://*.hornyheroes.com/world-boss-battle.html*
 // @match        https://*.hornyheroes.com/edit-labyrinth-team.html*
 // @match        https://*.hornyheroes.com/edit-world-boss-team.html*
+// @match        https://*.hornyheroes.com/penta-drill-arena.html*
+// @match        https://*.hornyheroes.com/penta-drill-pre-battle*
 // @run-at       document-body
 // @namespace    https://github.com/HH-GAME-MM/HH-Labyrinth-Plus-Plus
 // @updateURL    https://github.com/HH-GAME-MM/HH-Labyrinth-Plus-Plus/raw/main/HH-Labyrinth-Plus-Plus.user.js
