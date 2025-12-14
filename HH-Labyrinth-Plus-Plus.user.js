@@ -139,6 +139,19 @@
             case '/edit-labyrinth-team.html':
             case '/edit-world-boss-team.html':
                 onReadyRun(EditTeam_run, 'div.change-team-panel .panel-title'); break;
+            case '/penta-drill-arena.html':
+                onReadyRun(
+                    pentaDrillArena_run,
+                    '.opponents-container.grid-container .opponent-info-container #change_team',
+                );
+                break;
+            case '/penta-drill-pre-battle.html':
+            case '/penta-drill-pre-battle':
+                onReadyRun(
+                    pentaDrillPreBattle_run,
+                    '.middle-container .buttons-container:has(#perform_opponent)',
+                );
+                break;
         }
 
         function onReadyRun(callback, selector) {
@@ -521,6 +534,91 @@
                 config.lastFilter = index;
                 saveConfigToLocalStorage(config);
             }
+        }
+
+        function performPentaDrill(opponentId) {
+            const {
+                shared: {
+                    Hero,
+                    animations: { loadingAnimation },
+                    general: { hh_ajax, objectivePopup, getDocumentHref },
+                    reward_popup: { Reward }
+                }
+            } = unsafeWindow;
+
+            loadingAnimation.start();
+
+            //open the battle page first
+            const battleHref = getDocumentHref('/penta-drill-battle.html');
+            const battleURL = battleHref + `${battleHref.includes('?') ? '&' : '?'}id_opponent=${opponentId}&number_of_battles=1`;
+            $.ajax({
+                url: battleURL,
+                success: function () {
+                    //change referer
+                    unsafeWindow.history.replaceState(null, '', battleURL);
+                    const params = {
+                        action: "do_battles_penta_drill",
+                        id_opponent: opponentId,
+                        number_of_battles: "1"
+                    };
+
+                    hh_ajax(params, function (data) {
+                        loadingAnimation.stop();
+                        Reward.handlePopup(data.rewards);
+                        Hero.updates(data.hero_changes);
+                        objectivePopup.show(data.rewards);
+                    })
+                }
+            });
+        }
+
+        function pentaDrillArena_run() {
+            $('.opponent-info-container .change-team-container #change_team').each(function() {
+                const $performSkip = $(`
+                    <button id="perform_opponent" class="green_button_L">
+                        ${GT.design.perform_tab}! <span class="hudPenta_drill_mix_icn" style="height: 24px;"></span>
+                    </button>
+                `);
+                if (!shared.Hero.energies.drill.amount) $performSkip.attr('disabled', '');
+                $(this).after($performSkip);
+
+                const preBattleHref = $(this).attr('href');
+                const opponentId = new URLSearchParams(preBattleHref).get('id_opponent');
+
+                $performSkip.one('click', () => {
+                    const $allButtons = $('.green_button_L');
+                    $allButtons.attr('disabled', '');
+                    $allButtons.off('click');
+                    performPentaDrill(opponentId);
+                });
+            });
+        }
+
+        function pentaDrillPreBattle_run() {
+            const $performSkip = $(`
+                <button id="perform_opponent" class="green_button_L" style="width: 12rem;">
+                    ${GT.design.perform_tab} & ${GT.design.battle_skip}!
+                    <div class="energy-price-container">
+                        1 <span class="hudPenta_drill_mix_icn"></span>
+                    </div>
+                </button>
+            `);
+            if (!shared.Hero.energies.drill.amount) $performSkip.attr('disabled', '');
+            const $buttonContainer = $('.middle-container .buttons-container:has(#perform_opponent)');
+            $buttonContainer.append($performSkip);
+            $buttonContainer.css({
+                'width': 'min-content',
+                'display': 'flex',
+                'flex-direction': 'column',
+                'align-items': 'center',
+            });
+
+            $performSkip.one('click', () => {
+                const $allButtons = $('.green_button_L');
+                $allButtons.attr('disabled', '');
+                $allButtons.off('click');
+                performPentaDrill(opponent_fighter.id_fighter);
+            });
         }
     }
 
