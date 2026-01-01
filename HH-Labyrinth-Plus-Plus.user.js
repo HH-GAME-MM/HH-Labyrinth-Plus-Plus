@@ -588,7 +588,7 @@
                 const $description = $(this).find('.description-container');
                 $description.append($preview);
 
-                const preBattleHref = $(this).attr('href');
+                const preBattleHref = $preview.attr('href');
                 const opponentId = new URLSearchParams(preBattleHref).get('id_opponent');
 
                 $performSkip.one('click', () => {
