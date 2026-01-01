@@ -108,6 +108,8 @@
         case '/edit-labyrinth-team.html':
         case '/edit-world-boss-team.html':
             EditTeam_css(); break;
+        case '/penta-drill-arena.html':
+            pentaDrillArena_css(); break;
     }
 
     if(document.readyState !== 'loading') {
@@ -574,14 +576,17 @@
         }
 
         function pentaDrillArena_run() {
-            $('.opponent-info-container .change-team-container #change_team').each(function() {
+            $('.opponent-info-container').each(function() {
                 const $performSkip = $(`
                     <button id="perform_opponent" class="green_button_L">
-                        ${GT.design.perform_tab}! <span class="hudPenta_drill_mix_icn" style="height: 24px;"></span>
+                        ${GT.design.perform_tab}! <span class="hudPenta_drill_mix_icn"></span>
                     </button>
                 `);
                 if (!shared.Hero.energies.drill.amount) $performSkip.attr('disabled', '');
-                $(this).after($performSkip);
+                const $preview = $(this).find('#change_team');
+                $preview.after($performSkip);
+                const $description = $(this).find('.description-container');
+                $description.append($preview);
 
                 const preBattleHref = $(this).attr('href');
                 const opponentId = new URLSearchParams(preBattleHref).get('id_opponent');
@@ -681,6 +686,20 @@
 
         //hide the buy buttons as long as they don't have a confirmation box
         css.sheet.insertRule('button.blue_button_L.buy-item {display: none !important;}');
+    }
+
+    function pentaDrillArena_css()
+    {
+        const css = document.createElement('style');
+        document.head.appendChild(css);
+
+        css.sheet.insertRule('.opponent-info-container .description-container { align-items: center }');
+        css.sheet.insertRule('#change_team.blue_button_L { height: 3rem; text-shadow: none }');
+        css.sheet.insertRule('.player-description { width: 11rem !important }');
+        css.sheet.insertRule('#perform_opponent .hudPenta_drill_mix_icn { height: 24px; width: 24px }');
+
+        // hide irrelevant class icons
+        css.sheet.insertRule('.player-description .player-class { display: none }');
     }
 
     function loadConfigFromLocalStorage()
