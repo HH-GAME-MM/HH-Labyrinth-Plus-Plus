@@ -143,6 +143,7 @@
                 onReadyRun(
                     pentaDrillArena_run,
                     '.opponents-container.grid-container .opponent-info-container #change_team',
+                    qs => qs.length === 4,
                 );
                 break;
             case '/penta-drill-pre-battle.html':
@@ -154,8 +155,8 @@
                 break;
         }
 
-        function onReadyRun(callback, selector) {
-            if(document.querySelector(selector) !== null) {
+        function onReadyRun(callback, selector, condition = qs => !!qs.length) {
+            if(condition(document.querySelectorAll(selector))) {
                 callback();
             } else {
                 setTimeout(onReadyRun, 10, callback, selector);
