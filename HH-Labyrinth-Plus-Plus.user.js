@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         HH Labyrinth++
-// @version      0.12.1
+// @version      0.12.2
 // @description  Upgrade Labyrinth, WBT and PD with various features
 // @author       -MM-, xnh0x
 // @match        https://*.hentaiheroes.com/labyrinth.html*
@@ -569,7 +569,10 @@
                         loadingAnimation.stop();
                         Reward.handlePopup(data.rewards);
                         Hero.updates(data.hero_changes);
-                        objectivePopup.show(data.rewards);
+                        if (data.objective_points) {
+                            data.rewards.objective_points = data.objective_points;
+                            objectivePopup.show(data.rewards);
+                        }
                     })
                 }
             });
